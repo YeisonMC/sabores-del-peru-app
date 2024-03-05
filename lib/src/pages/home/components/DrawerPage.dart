@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sabores_del_peru/src/pages/breakfast/BreakfastPage.dart';
+import 'package:sabores_del_peru/src/pages/home/HomePage.dart';
 
 class DrawerPage extends StatelessWidget {
   const DrawerPage({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class DrawerPage extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: const Text("data"),
+            accountName: const Text("El Yeissen"),
             accountEmail: const Text("saboresperuanos.com"),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
@@ -36,17 +37,18 @@ class DrawerPage extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text("Home"),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const HomePage()));
+            },
           ),
           ListTile(
             leading: const Icon(Icons.breakfast_dining),
             title: const Text("Desayunos"),
             onTap: () {
-              Navigator.of(context).pushNamed("/home/breakfastpage");
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => const BreakfastPage()));
+              // Navigator.of(context).pushNamed("/home/breakfastpage");
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const BreakfastPage()));
             },
           ),
           ListTile(
@@ -57,6 +59,11 @@ class DrawerPage extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.dinner_dining),
             title: const Text("Cena"),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.login),
+            title: const Text("Cerrar sesión"),
             onTap: () {},
           ),
         ],

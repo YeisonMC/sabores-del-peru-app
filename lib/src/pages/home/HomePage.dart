@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sabores_del_peru/src/pages/home/components/DrawerPage.dart';
+import 'package:sabores_del_peru/src/pages/tabbar/Destacados.dart';
+import 'package:sabores_del_peru/src/pages/tabbar/Postres.dart';
+import 'package:sabores_del_peru/src/pages/tabbar/Top.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,10 +12,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Menú"),
-        // leading: IconButton(
-        //   icon: const Icon(Icons.menu),
-        //   onPressed: () {},
-        // ),
         backgroundColor: const Color.fromRGBO(56, 60, 71, 20),
         actions: <Widget>[
           IconButton(
@@ -22,21 +21,63 @@ class HomePage extends StatelessWidget {
         ],
       ),
       drawer: const DrawerPage(),
-      body: Center(
+      body: DefaultTabController(
+        length: 3,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Bienvenido a la página de inicio',
-              style: TextStyle(fontSize: 20.0),
+          children: [
+            const SizedBox(
+              height: 10,
             ),
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                // Acción cuando se presiona el botón
-              },
-              child: const Text('Ir a otra página'),
+            Container(
+              width: 300,
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  color: Colors.amber[200],
+                  borderRadius: BorderRadius.circular(16)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: const [
+                  Text(
+                    "data",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  Text(
+                    "s/ASDAS",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  )
+                ],
+              ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            const TabBar(
+              // isScrollable: true,
+              tabs: [
+                Tab(
+                  child: Text(
+                    "Destacados",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Postres",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Top",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+            const Expanded(
+                child: TabBarView(
+              children: [Destacados(), Postres(), Top()],
+            ))
           ],
         ),
       ),
